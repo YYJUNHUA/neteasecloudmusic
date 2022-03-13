@@ -1,25 +1,41 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+// 引入路由
+import routes from "./routes";
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-];
+/* 
+  重写 push|replace
+  说明: 先把 VueRouter 原型对象的 push|replace 保存一份
+ */
+let originPush = VueRouter.prototype.push;
+let originReplace = VueRouter.prototype.replace;
+
+VueRouter.prototype.push = function (location, resolve, reject) {
+  if (resolve && reject) {
+    originPush.call(this, location, resolve, reject);
+  } else {
+    originPush.call(
+      this,
+      location,
+      () => {},
+      () => {}
+    );
+  }
+};
+VueRouter.prototype.replace = function (location, resolve, reject) {
+  if (resolve && reject) {
+    originReplace.call(this, location, resolve, reject);
+  } else {
+    originReplace.call(
+      this,
+      location,
+      () => {},
+      () => {}
+    );
+  }
+};
 
 const router = new VueRouter({
   routes,
