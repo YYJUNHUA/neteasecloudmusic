@@ -6,7 +6,7 @@
     <div class="container-module">
       <div class="module-left">
         <div class="left-wrap">
-          <DiscoverRecommend :topPlayLists="topPlayLists" />
+          <DiscoverRecommend :personalizedLists="personalizedLists" />
           <DiscoverNewDisc :albumNewestLists="albumNewestLists" />
           <DiscoverSongList :concatTopAndDataLists="concatTopAndDataLists" />
         </div>
@@ -54,8 +54,8 @@ export default {
 
     // 获取首页轮播图数据
     this.getBannersDatas();
-    // 获取首页歌单 ( 网友精选碟 )数据
-    this.getTopPlayDatas();
+    // 获取推荐歌单(首页热门推荐)列表
+    this.getPersonalizedDatas();
     // 获取首页热门歌手数据
     this.getTopArtistsDatas();
     // 获取首页新碟上架数据
@@ -69,8 +69,8 @@ export default {
     ...mapState({
       // 首页轮播图数据
       bannersLists: state => state.discover.bannersLists,
-      // 首页热门推荐 歌单 ( 网友精选碟 )数据
-      topPlayLists: state => state.discover.topPlayLists,
+      // 首页推荐歌单(首页热门推荐)列表
+      personalizedLists: state => state.discover.personalizedLists,
       // 首页新碟上架数据
       albumNewestLists: state => state.discover.albumNewestLists,
       // 获取所有榜单数据
@@ -138,14 +138,9 @@ export default {
     getBannersDatas() {
       this.$store.dispatch("getBannersLists");
     },
-    // 派发 action 获取歌单 ( 网友精选碟 )数据
-    getTopPlayDatas() {
-      this.$store.dispatch("getTopPlayLists", {
-        cat: "",
-        limit: 8,
-        offset: "",
-        order: "hot",
-      });
+    // 派发 action 获取推荐歌单(首页热门推荐)列表
+    getPersonalizedDatas() {
+      this.$store.dispatch("getPersonalizedLists", 8);
     },
     // 派发 action 获取首页新碟上架数据
     getAlbumNewestDatas() {

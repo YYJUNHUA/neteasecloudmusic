@@ -1,11 +1,11 @@
 import request from "@/utils/request";
 
-// 接口: 获取 歌单 ( 网友精选碟 ) 列表
-export const reqTopPlayList = params =>
+// 接口: 获取 推荐歌单 列表
+export const reqPersonalized = limit =>
   request({
-    url: "/top/playlist",
+    url: "/personalized",
     method: "GET",
-    params,
+    params: { limit },
   });
 
 // 接口: 获取 歌单所有歌曲(可获取首页榜单) 列表

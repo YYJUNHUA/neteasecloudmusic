@@ -2,9 +2,9 @@
   <div class="recommend">
     <HeaderNav :isRecommend="true" title="热门推荐" />
     <ul class="container">
-      <li v-for="play in topPlayLists" :key="play.id">
+      <li v-for="play in personalizedLists" :key="play.id">
         <div class="container-player">
-          <img :src="`${play.coverImgUrl}?param=140y140`" alt="" />
+          <img :src="`${play.picUrl}?param=140y140`" alt="" />
           <a class="player-cover" :title="play.name" href="/#"></a>
           <div class="player-bottom">
             <a class="bottom-play icon-all" title="播放" href="/#"></a>
@@ -14,7 +14,7 @@
         </div>
         <p class="container-desc">
           <a class="desc-title" :title="play.description" href="/#">
-            {{ play.description }}
+            {{ play.name }}
           </a>
         </p>
       </li>
@@ -25,7 +25,7 @@
 <script>
 export default {
   name: "DiscoverRecommend",
-  props: ["topPlayLists"],
+  props: ["personalizedLists"],
 };
 </script>
 

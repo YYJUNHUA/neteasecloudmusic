@@ -1,5 +1,5 @@
 import { reqGetBannersList } from "@/api/discover";
-import { reqTopPlayList, reqPlayListTrackAll } from "@/api/playlist";
+import { reqPersonalized, reqPlayListTrackAll } from "@/api/playlist";
 import { reqAlbumNewest } from "@/api/album";
 import { reqTopList } from "@/api/toplist";
 import { reqTopArtists, reqArtistDetail } from "@/api/artist";
@@ -9,8 +9,8 @@ const getDefaultState = () => {
   return {
     // 首页轮播 列表
     bannersLists: [],
-    // (网友精选)歌单(首页热门推荐)列表
-    topPlayLists: [],
+    // 首页推荐歌单(首页热门推荐)列表
+    personalizedLists: [],
     // (首页新碟上架)最新专辑 列表
     albumNewestLists: [],
     // 获取所有榜单 列表
@@ -37,9 +37,9 @@ const mutations = {
   GETBANNERSLISTS(state, bannersLists) {
     state.bannersLists = bannersLists;
   },
-  // (网友精选)歌单(首页热门推荐)列表
-  GETTOPPLAYLISTS(state, topPlayLists) {
-    state.topPlayLists = topPlayLists;
+  // 推荐歌单(首页热门推荐)列表
+  GETPERSONALIZEDLISTS(state, personalizedLists) {
+    state.personalizedLists = personalizedLists;
   },
   // (首页新碟上架)最新专辑 列表
   GETALBUMNEWESTLISTS(state, albumNewestLists) {
@@ -82,11 +82,11 @@ const actions = {
       commit("GETBANNERSLISTS", result.banners);
     }
   },
-  // 获取(网友精选)歌单(首页热门推荐)列表
-  async getTopPlayLists({ commit }, params) {
-    let result = await reqTopPlayList(params);
+  // 获取推荐歌单(首页热门推荐)列表
+  async getPersonalizedLists({ commit }, limit) {
+    let result = await reqPersonalized(limit);
     if (result.code === 200) {
-      commit("GETTOPPLAYLISTS", result.playlists);
+      commit("GETPERSONALIZEDLISTS", result.result);
     }
   },
   // 获取 (首页新碟上架)最新专辑 列表
