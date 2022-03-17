@@ -20,7 +20,7 @@ VueRouter.prototype.push = function (location, resolve, reject) {
       this,
       location,
       () => {},
-      () => {}
+      () => {},
     );
   }
 };
@@ -32,7 +32,7 @@ VueRouter.prototype.replace = function (location, resolve, reject) {
       this,
       location,
       () => {},
-      () => {}
+      () => {},
     );
   }
 };

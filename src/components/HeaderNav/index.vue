@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .discover-icon {
-  background: url(~@/views/Discover/images/index.png) no-repeat 0 9999px;
+  background: url(~@/assets/images/index.png) no-repeat 0 9999px;
 }
 
 .header-nav {

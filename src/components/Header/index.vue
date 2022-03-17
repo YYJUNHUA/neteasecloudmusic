@@ -54,14 +54,20 @@
       <div class="sub-header-wrap">
         <ul class="wrap-nav">
           <li>
-            <a class="nav-select" href="/#">
+            <!-- <a class="nav-select" href="/#">
               <span>推荐</span>
-            </a>
+            </a> -->
+            <router-link class="nav-select" to="/discover">
+              <span>推荐</span>
+            </router-link>
           </li>
           <li>
-            <a href="/#">
+            <!-- <a href="/#">
               <span> 排行榜 </span>
-            </a>
+            </a> -->
+            <router-link to="/discover/toplist">
+              <span> 排行榜 </span>
+            </router-link>
           </li>
           <li>
             <a href="/#">
@@ -103,7 +109,7 @@ export default {
 .cor,
 .hot,
 .search-bg {
-  background: url('./images/topbar.png') no-repeat 9999px;
+  background: url("./images/topbar.png") no-repeat 9999px;
 }
 
 $wrap-width: 1100px;
