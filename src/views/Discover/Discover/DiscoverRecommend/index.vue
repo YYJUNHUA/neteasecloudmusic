@@ -9,7 +9,7 @@
           <div class="player-bottom">
             <a class="bottom-play icon-all" title="播放" href="/#"></a>
             <span class="bottom-icon-headset icon-all"></span>
-            <span class="bottom-amount">{{ play.playCount / 10000 }}万</span>
+            <span class="bottom-amount">{{ parseInt(play.playCount / 10000) }}万</span>
           </div>
         </div>
         <p class="container-desc">
